@@ -25,18 +25,25 @@ function handleSend(event) {
     let emailElement = document.createElement('h6');
     let opinionElement = document.createElement('p');
     let todayElement = document.createElement('p');
+    let deleteBtn = document.createElement('button');
 
     titleElement.innerText = `Title: ${title}`;
     nameElement.innerText = `By: ${name}`;
     todayElement.innerText = `Date: ${date}`;
     emailElement.innerText = `Email: ${email}`;
     opinionElement.innerText = opinion;
+    deleteBtn.innerText = 'Delete your post';
 
     postItem.appendChild(titleElement);
     postItem.appendChild(nameElement);
     postItem.appendChild(todayElement);
     postItem.appendChild(emailElement);
     postItem.appendChild(opinionElement);
+    postItem.appendChild(deleteBtn);
+
+    deleteBtn.addEventListener('click', () => {
+        saveBloggPost.removeChild(postItem);
+    });
 
     saveBloggPost.appendChild(postItem);
 
