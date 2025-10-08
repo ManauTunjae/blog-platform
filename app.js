@@ -18,6 +18,12 @@ function postBtn(event) {
     let email = emailInput.value;
     let opinion = opinionInput.value;
 
+    // Kolla om inputfältet är tomma.
+    if ( title === '' || name === '' || email === '' || opinion === '') {
+        alert('Write your blogg!');
+        return;
+    }
+
     // Formaterar datum.
     let date = today.toLocaleDateString();
 
@@ -57,9 +63,9 @@ function postBtn(event) {
     // Tilldelar textinnehåll till element.
     titleElement.innerText = `Title: ${title}`;
     opinionElement.innerText = opinion;
-    likeButton.innerText = '❤️'; // Like knapp.
+    likeButton.innerHTML = '<i class="fa-solid fa-thumbs-up"></i>'; // Like knapp.
     countLike.innerText = likeCount;
-    dislikeButton.innerText = '👎🏼'; // Dislike knapp.
+    dislikeButton.innerHTML = '<i class="fa-solid fa-thumbs-down"></i>'; // Dislike knapp.
     countDislike.innerText = dislikeCount;
     deleteBtn.innerText = 'Delete your post';
     nameElement.innerText = `By: ${name}`;
