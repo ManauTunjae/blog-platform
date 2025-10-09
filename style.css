@@ -23,6 +23,17 @@ html body {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.445);
 }
 
+/* Footer */
+.footer {
+    background-color: rgba(247, 175, 204, 0.477);
+    color: grey;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 20px 20px 0 0;
+    padding: 1rem; 
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2);
+}
+
 /* Img-header */
 .blogg-icon {
     width: 250px;
@@ -157,16 +168,17 @@ button:active {
 
 .deleteBtn {
     background-color: #ff4d4d;
-    width: 10rem;
-    height: 3rem;
+    width: 5.5rem;
+    height: 1.5rem;
     border-radius: 10px;
     color: white;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 0.6rem;
     transition: all 0.3s ease;
     cursor: pointer;
     box-shadow: 4px 4px 4px rgba(255, 255, 255, 0.845);
-    transform: scale(0.6);
+    margin-bottom: 0.5rem;
+    /* transform: scale(0.6); */
     
 } 
 
