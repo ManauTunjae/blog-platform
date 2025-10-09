@@ -19,17 +19,15 @@ function postBtn(event) {
     let opinion = opinionInput.value;
 
     // Kolla om inputfältet är tomma.
-    if ( title === '' || name === '' || email === '' || opinion === '') {
+    if ( !title || !name || !email || !opinion) {
         alert('Please write your blog!');
         return;
     }
 
     // Formaterar datum.
     let date = today.toLocaleDateString();
-
     // Skapar en contianer för ett nytt skapande inlägg.
     let postItem = document.createElement('div')
-    
     // Skapa de olika element som ska visas i inlägget.
     let titleElement = document.createElement('h5');
     let opinionElement = document.createElement('p');
@@ -86,31 +84,21 @@ function postBtn(event) {
     });
     // Event funktion till delete-knapp för att ta bort skapande inlägg. 
     deleteBtn.addEventListener('click', () => {
-        saveBloggPost.removeChild(postItem);
+        if (confirm('Do you really want to delete your post?')) {
+            saveBloggPost.removeChild(postItem);
+        }
     });
     
     // Lägg till inlägg i DOM
-    postItem.appendChild(titleElement);
-    postItem.appendChild(opinionElement);
-    postItem.appendChild(buttonContainer);
-    buttonContainer.appendChild(likeContainer);
-    likeContainer.appendChild(likeButton);
-    likeContainer.appendChild(countLike);
-    buttonContainer.appendChild(dislikeContainer)
-    dislikeContainer.appendChild(dislikeButton);
-    dislikeContainer.appendChild(countDislike);
-    postItem.appendChild(deleteBtn);
-    postItem.appendChild(nameElement);
-    postItem.appendChild(todayElement);
-    postItem.appendChild(emailElement);
+    postItem.append(titleElement, opinionElement, buttonContainer, deleteBtn, nameElement, todayElement, emailElement);
+    buttonContainer.append(likeContainer, dislikeContainer);
+    likeContainer.append(likeButton, countLike);
+    dislikeContainer.append(dislikeButton, countDislike);
     // Lägger till postItem i blogglistan.
     saveBloggPost.appendChild(postItem);
 
     // Rensa inputfälten efter ett skapande inlägg skapats.
-    titleInput.value = '';
-    nameInput.value = '';
-    emailInput.value = '';
-    opinionInput.value = '';
+    titleInput.value = nameInput.value = emailInput.value = opinionInput.value = '';
 
 }
 // Lägger till event funktion på POST-knappen.
