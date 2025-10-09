@@ -53,7 +53,7 @@ html body {
 /* Input-sektion */
 .new-blogg-post {
     color: rgb(255, 255, 255);
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     text-align: center;
 }
 
@@ -112,7 +112,7 @@ button:active {
     border-radius: 20px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.445);
     color: rgba(0, 0, 0, 0.49);
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     display: flex;
     flex-direction: column;
 }
@@ -123,7 +123,11 @@ button:active {
     text-align: center;
 }
 
-.post-item > p {
+.post-item>h6 {
+    font-size: 0.8rem;
+}
+
+.post-content {
     margin-top: 0.5rem;
     font-size: 1rem;
     color: black;
@@ -140,12 +144,13 @@ button:active {
 
 .likeContainer, .dislikeContainer {
     display: flex;
-    width: 4rem; 
+    width: 3rem; 
     border-radius: 1rem;
+    margin-bottom: 1rem;;
 }
 
-.likeButton {
-    font-size: 1.5rem;
+.likeButton, .countLike {
+    font-size: 1.2rem;
     color: green;
     border-radius: 0.5rem;
     border: none;
@@ -153,19 +158,13 @@ button:active {
     cursor: pointer;
 }
 
-.dislikeButton {
-    font-size: 1.5rem;
+.dislikeButton, .countDislike {
+    font-size: 1.2rem;
     color: red;
     border-radius: 0.5rem;
     border: none;
     margin: 0.5rem;
     cursor: pointer;
-}
-
-.countLike, .countDislike {
-    font-weight: bold;
-    font-size: 1.5rem;
-    margin: 0.5rem;
 }
 
 .deleteBtn {
@@ -193,33 +192,41 @@ button:active {
         width: 150px;
     }
    
+    /* Från två kolumn och en rad till två rader och en kolumn */
     .container {
         grid-template-rows: 0.5fr 0.5fr;
         grid-template-columns: 1fr;
         text-align: center;
     }
 
+    /* Input-sektion */
     .new-blogg-post {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     .input-form {
-        font-size: 0.8rem;
+        font-size: 1rem;
         text-align: left;
     }
 
     input, textarea {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
 
     #your-opinion {
-        height: 8rem;
+        height: 6rem;
         resize: none;
+    }
+
+    /* Skapande inlägg sektion */
+    .buttonContainer {
+        display: flex;
+        gap: 1.5rem;
     }
 
     .likeButton, .dislikeButton {
         width: 1rem;
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
 
     .countLike, .countDislike {
@@ -229,6 +236,11 @@ button:active {
 
     .post-item {
         text-align: left;
+        font-size: 1.3rem;
+    }
+
+    .post-content {
+        font-size: 1rem;
     }
 
 }
