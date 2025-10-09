@@ -139,7 +139,6 @@ button:active {
     display: flex;
     width: 4rem; 
     border-radius: 1rem;
-    
 }
 
 .likeButton {
@@ -177,9 +176,7 @@ button:active {
     transition: all 0.3s ease;
     cursor: pointer;
     box-shadow: 4px 4px 4px rgba(255, 255, 255, 0.845);
-    margin-bottom: 0.5rem;
-    /* transform: scale(0.6); */
-    
+    margin-bottom: 0.5rem;    
 } 
 
 /* Anpassar andra storlek skärm iPad och mobil användare */
