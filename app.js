@@ -51,6 +51,7 @@ function postBtn(event) {
     // Döpa till klasser för att styla i CSS sen.
     postItem.classList.add('post-item');
     titleElement.classList.add('postTitle');
+    opinionElement.classList.add('post-content')
     buttonContainer.classList.add('buttonContainer');
     likeContainer.classList.add('likeContainer');
     likeButton.classList.add('likeButton');
