@@ -20,7 +20,7 @@ function postBtn(event) {
 
     // Kolla om inputfältet är tomma.
     if ( title === '' || name === '' || email === '' || opinion === '') {
-        alert('Write your blogg!');
+        alert('Please write your blog!');
         return;
     }
 
