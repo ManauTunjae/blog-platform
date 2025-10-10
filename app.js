@@ -1,5 +1,5 @@
 // Hämta referenser från index.html till DOM.
-const saveBloggPost = document.getElementById('blogg-list');
+const saveBlogPost = document.getElementById('blogg-list');
 const titleInput = document.getElementById('title');
 const nameInput = document.getElementById('writer-name');
 const emailInput = document.getElementById('your-email');
@@ -7,6 +7,7 @@ const opinionInput = document.getElementById('your-opinion');
 const sendBtn = document.getElementById('submit-btn');
 const today = new Date();
 
+// Skapa hjälp funktion som skapar ett HTML-element med klass och innehåll. 
 function createElement(tag, className, content = '') {
     const element = document.createElement(tag);
     if (className) element.classList.add(className);
@@ -14,6 +15,7 @@ function createElement(tag, className, content = '') {
     return element;
 }
 
+// Skapa funktion för like och dislike knapp samt add event till knappen och räknare.
 function createLikeDislikeButtons() {
     let likeCount = 0;
     let dislikeCount = 0;
@@ -49,85 +51,49 @@ function postBtn(event) {
     let email = emailInput.value;
     let opinion = opinionInput.value;
 
-    // Kolla om inputfältet är tomma.
-    if ( !title || !name || !email || !opinion) {
+    // Validera att inputfältet är ifyllda.
+    if ( !title || !name || !email || !opinion ) {
         alert('Please write your blog!');
+        return;
+    } else if ( !email.includes('@') ) {
+        alert('Please enter a valid email address!');
+        // Rensa email fältet så kan man skriva om giltigt mejl.
+        emailInput.value = '';
         return;
     }
 
     // Formaterar datum.
     let date = today.toLocaleDateString();
-    // Skapar en contianer för ett nytt skapande inlägg.
+    // Skapa HTML-element, klass och innehåll med hjälp av createElement funktion.
     let postItem = createElement('div', 'post-item')
-    // Skapa de olika element som ska visas i inlägget.
     let titleElement = createElement('h5', 'postTitle', `Title: ${title}`);
     let opinionElement = createElement('p', 'post-content', opinion);
     let buttonContainer = createElement('div', 'buttonContainer'); 
     let likeContainer = createElement('div', 'likeContainer');
-    // let likeButton = document.createElement('button', 'likeButton', '<i class="fa-solid fa-thumbs-up"></i>';);
-    // let countLike = document.createElement('p', 'countLike', likeCount);
     let dislikeContainer = createElement('div', 'dislikeContainer');
-    // let dislikeButton = document.createElement('button', 'dislikeButton', '<i class="fa-solid fa-thumbs-down"></i>');
-    // let countDislike = document.createElement('p', 'countDislike', dislikeCount);
+    // Hämta like, dislike-element från funktionen createLikeDislikeButtons. 
     let { likeButton, countLike, dislikeButton, countDislike } = createLikeDislikeButtons();
     let deleteBtn = createElement('button', 'deleteBtn', 'Delete your post');
     let nameElement = createElement('h6', null, `By: ${name}`);
     let emailElement = createElement('h6', null,  `Email: ${email}`);
     let todayElement = createElement('h6', null, `Date: ${date}`);
-    // Skapa räknare för likes och dislikes (startar på 0)
-    // let likeCount = 0;
-    // let dislikeCount = 0;
     
-    // Döpa till klasser för att styla i CSS sen.
-    // postItem.classList.add('post-item');
-    // titleElement.classList.add('postTitle');
-    // opinionElement.classList.add('post-content')
-    // buttonContainer.classList.add('buttonContainer');
-    // likeContainer.classList.add('likeContainer');
-    // likeButton.classList.add('likeButton');
-    // countLike.classList.add('countLike');
-    // dislikeContainer.classList.add('dislikeContainer');
-    // dislikeButton.classList.add('dislikeButton')
-    // countDislike.classList.add('countDislike')
-    // deleteBtn.classList.add('deleteBtn');
-
-    // Tilldelar textinnehåll till element.
-    // titleElement.innerText = `Title: ${title}`;
-    // opinionElement.innerText = opinion;
-    // likeButton.innerHTML = '<i class="fa-solid fa-thumbs-up"></i>'; // Like knapp.
-    // countLike.innerText = likeCount;
-    // dislikeButton.innerHTML = '<i class="fa-solid fa-thumbs-down"></i>'; // Dislike knapp.
-    // countDislike.innerText = dislikeCount;
-    // deleteBtn.innerText = 'Delete your post';
-    // nameElement.innerText = `By: ${name}`;
-    // todayElement.innerText = `Date: ${date}`;
-    // emailElement.innerText = `Email: ${email}`;
-
-    // Event listener för like-knappen
-    // likeButton.addEventListener('click', () => {
-    //     likeCount++;
-    //     countLike.innerText = likeCount;
-    // });
-    
-    // // Event listener för dislike-knappen
-    // dislikeButton.addEventListener('click', () => {
-    //     dislikeCount++;
-    //     countDislike.innerText = dislikeCount;
-    // });
-    // // Event funktion till delete-knapp för att ta bort skapande inlägg. 
+    // Event funktion till delete-knapp för att ta bort skapande inlägg. 
     deleteBtn.addEventListener('click', () => {
+        // Alert meddelande när man ska ta bort inlägg.
         if (confirm('Do you really want to delete your post?')) {
-            saveBloggPost.removeChild(postItem);
+            saveBlogPost.removeChild(postItem);
         }
     });
     
     // Lägg till inlägg i DOM
+    // append med fler element och appendChild med enkel element.
     postItem.append(titleElement, opinionElement, buttonContainer, deleteBtn, nameElement, todayElement, emailElement);
     buttonContainer.append(likeContainer, dislikeContainer);
     likeContainer.append(likeButton, countLike);
     dislikeContainer.append(dislikeButton, countDislike);
     // Lägger till postItem i blogglistan.
-    saveBloggPost.appendChild(postItem);
+    saveBlogPost.appendChild(postItem);
 
     // Rensa inputfälten efter ett skapande inlägg skapats.
     titleInput.value = nameInput.value = emailInput.value = opinionInput.value = '';
@@ -135,6 +101,3 @@ function postBtn(event) {
 }
 // Lägger till event funktion på POST-knappen.
 sendBtn.addEventListener('click', postBtn);
-
-
-
