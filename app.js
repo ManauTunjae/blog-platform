@@ -7,6 +7,37 @@ const opinionInput = document.getElementById('your-opinion');
 const sendBtn = document.getElementById('submit-btn');
 const today = new Date();
 
+function createElement(tag, className, content = '') {
+    const element = document.createElement(tag);
+    if (className) element.classList.add(className);
+    if (content) element.textContent = content;
+    return element;
+}
+
+function createLikeDislikeButtons() {
+    let likeCount = 0;
+    let dislikeCount = 0;
+
+    const likeButton = createElement('button', 'likeButton');
+    likeButton.innerHTML = '<i class="fa-solid fa-thumbs-up"></i>';
+    const countLike = createElement('p', 'countLike', '0');
+
+    const dislikeButton = createElement('button', 'dislikeButton');
+    dislikeButton.innerHTML = '<i class="fa-solid fa-thumbs-down"></i>'; 
+    const countDislike = createElement('p', 'countDislike', '0');
+    
+    likeButton.addEventListener('click', () => {
+        countLike.textContent = ++likeCount;
+    });
+
+    dislikeButton.addEventListener('click', () => {
+        countDislike.textContent = ++dislikeCount;
+    })
+
+    return { likeButton, countLike, dislikeButton, countDislike };
+
+}
+
 // Funktion som hanterar POST-knapp.
 function postBtn(event) {
     // Förhindra att sidan laddas om. 
@@ -27,62 +58,63 @@ function postBtn(event) {
     // Formaterar datum.
     let date = today.toLocaleDateString();
     // Skapar en contianer för ett nytt skapande inlägg.
-    let postItem = document.createElement('div')
+    let postItem = createElement('div', 'post-item')
     // Skapa de olika element som ska visas i inlägget.
-    let titleElement = document.createElement('h5');
-    let opinionElement = document.createElement('p');
-    let buttonContainer = document.createElement('div');
-    let likeContainer = document.createElement('div');
-    let likeButton = document.createElement('button');
-    let countLike = document.createElement('p');
-    let dislikeContainer = document.createElement('div');
-    let dislikeButton = document.createElement('button');
-    let countDislike = document.createElement('p');
-    let deleteBtn = document.createElement('button');
-    let nameElement = document.createElement('h6');
-    let emailElement = document.createElement('h6');
-    let todayElement = document.createElement('h6');
+    let titleElement = createElement('h5', 'postTitle', `Title: ${title}`);
+    let opinionElement = createElement('p', 'post-content', opinion);
+    let buttonContainer = createElement('div', 'buttonContainer'); 
+    let likeContainer = createElement('div', 'likeContainer');
+    // let likeButton = document.createElement('button', 'likeButton', '<i class="fa-solid fa-thumbs-up"></i>';);
+    // let countLike = document.createElement('p', 'countLike', likeCount);
+    let dislikeContainer = createElement('div', 'dislikeContainer');
+    // let dislikeButton = document.createElement('button', 'dislikeButton', '<i class="fa-solid fa-thumbs-down"></i>');
+    // let countDislike = document.createElement('p', 'countDislike', dislikeCount);
+    let { likeButton, countLike, dislikeButton, countDislike } = createLikeDislikeButtons();
+    let deleteBtn = createElement('button', 'deleteBtn', 'Delete your post');
+    let nameElement = createElement('h6', null, `By: ${name}`);
+    let emailElement = createElement('h6', null,  `Email: ${email}`);
+    let todayElement = createElement('h6', null, `Date: ${date}`);
     // Skapa räknare för likes och dislikes (startar på 0)
-    let likeCount = 0;
-    let dislikeCount = 0;
+    // let likeCount = 0;
+    // let dislikeCount = 0;
     
     // Döpa till klasser för att styla i CSS sen.
-    postItem.classList.add('post-item');
-    titleElement.classList.add('postTitle');
-    opinionElement.classList.add('post-content')
-    buttonContainer.classList.add('buttonContainer');
-    likeContainer.classList.add('likeContainer');
-    likeButton.classList.add('likeButton');
-    countLike.classList.add('countLike');
-    dislikeContainer.classList.add('dislikeContainer');
-    dislikeButton.classList.add('dislikeButton')
-    countDislike.classList.add('countDislike')
-    deleteBtn.classList.add('deleteBtn');
+    // postItem.classList.add('post-item');
+    // titleElement.classList.add('postTitle');
+    // opinionElement.classList.add('post-content')
+    // buttonContainer.classList.add('buttonContainer');
+    // likeContainer.classList.add('likeContainer');
+    // likeButton.classList.add('likeButton');
+    // countLike.classList.add('countLike');
+    // dislikeContainer.classList.add('dislikeContainer');
+    // dislikeButton.classList.add('dislikeButton')
+    // countDislike.classList.add('countDislike')
+    // deleteBtn.classList.add('deleteBtn');
 
     // Tilldelar textinnehåll till element.
-    titleElement.innerText = `Title: ${title}`;
-    opinionElement.innerText = opinion;
-    likeButton.innerHTML = '<i class="fa-solid fa-thumbs-up"></i>'; // Like knapp.
-    countLike.innerText = likeCount;
-    dislikeButton.innerHTML = '<i class="fa-solid fa-thumbs-down"></i>'; // Dislike knapp.
-    countDislike.innerText = dislikeCount;
-    deleteBtn.innerText = 'Delete your post';
-    nameElement.innerText = `By: ${name}`;
-    todayElement.innerText = `Date: ${date}`;
-    emailElement.innerText = `Email: ${email}`;
+    // titleElement.innerText = `Title: ${title}`;
+    // opinionElement.innerText = opinion;
+    // likeButton.innerHTML = '<i class="fa-solid fa-thumbs-up"></i>'; // Like knapp.
+    // countLike.innerText = likeCount;
+    // dislikeButton.innerHTML = '<i class="fa-solid fa-thumbs-down"></i>'; // Dislike knapp.
+    // countDislike.innerText = dislikeCount;
+    // deleteBtn.innerText = 'Delete your post';
+    // nameElement.innerText = `By: ${name}`;
+    // todayElement.innerText = `Date: ${date}`;
+    // emailElement.innerText = `Email: ${email}`;
 
     // Event listener för like-knappen
-    likeButton.addEventListener('click', () => {
-        likeCount++;
-        countLike.innerText = likeCount;
-    });
+    // likeButton.addEventListener('click', () => {
+    //     likeCount++;
+    //     countLike.innerText = likeCount;
+    // });
     
-    // Event listener för dislike-knappen
-    dislikeButton.addEventListener('click', () => {
-        dislikeCount++;
-        countDislike.innerText = dislikeCount;
-    });
-    // Event funktion till delete-knapp för att ta bort skapande inlägg. 
+    // // Event listener för dislike-knappen
+    // dislikeButton.addEventListener('click', () => {
+    //     dislikeCount++;
+    //     countDislike.innerText = dislikeCount;
+    // });
+    // // Event funktion till delete-knapp för att ta bort skapande inlägg. 
     deleteBtn.addEventListener('click', () => {
         if (confirm('Do you really want to delete your post?')) {
             saveBloggPost.removeChild(postItem);
