@@ -1,4 +1,4 @@
-# 📝 Dynamisk-bloggplattform
+# 📝 Dynamic-blogplatform
 
 Frontend 1 - Exam project. Where i built a simple and dynamic blogg platform 
 using HTML, CSS, and JavaScript.
