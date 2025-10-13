@@ -40,6 +40,67 @@ function createLikeDislikeButtons() {
 
 }
 
+// Funktion för att skapa kommentarssektion
+function createCommentSection() {
+    // Container för hela kommentarssektionen
+    const commentSection = createElement('div', 'comment-section');
+    
+    // Container för att visa kommentarer
+    const commentsDisplay = createElement('div', 'comments-display');
+    
+    // Formulär för att lägga till kommentar
+    const commentForm = createElement('div', 'comment-form');
+    const commentInput = createElement('input', 'comment-input');
+    commentInput.type = 'text';
+    commentInput.placeholder = 'Write a comment...';
+    
+    const commentNameInput = createElement('input', 'comment-name-input');
+    commentNameInput.type = 'text';
+    commentNameInput.placeholder = 'Your name';
+    
+    const addCommentBtn = createElement('button', 'add-comment-btn', 'Add Comment');
+
+
+// Event för att lägga till kommentar
+    addCommentBtn.addEventListener('click', () => {
+        const commentText = commentInput.value.trim();
+        const commentName = commentNameInput.value.trim();
+        
+        if (!commentText || !commentName) {
+            alert('Please fill in both name and comment!');
+            return;
+        }
+        
+        // Skapa kommentar-element
+        const commentItem = createElement('div', 'comment-item');
+        const commentAuthor = createElement('strong', 'comment-author', commentName + ': ');
+        const commentContent = createElement('span', 'comment-content', commentText);
+        const commentDate = createElement('small', 'comment-date', ' (' + new Date().toLocaleDateString() + ')');
+        
+        commentItem.appendChild(commentAuthor);
+        commentItem.appendChild(commentContent);
+        commentItem.appendChild(commentDate);
+        
+        // Lägg till kommentaren i displayen
+        commentsDisplay.appendChild(commentItem);
+        
+        // Rensa input-fälten
+        commentInput.value = '';
+        commentNameInput.value = '';
+    });
+    
+    // Bygg ihop kommentarsformulär
+    commentForm.append(commentNameInput, commentInput, addCommentBtn);
+    
+    // Lägg till rubrik
+    const commentTitle = createElement('h6', 'comment-title', 'Comments:');
+    
+    // Bygg ihop hela kommentarssektionen
+    commentSection.append(commentTitle, commentsDisplay, commentForm);
+    
+    return commentSection;
+}
+
 // Funktion som hanterar POST-knapp.
 function postBtn(event) {
     // Förhindra att sidan laddas om. 
@@ -77,6 +138,8 @@ function postBtn(event) {
     let nameElement = createElement('h6', null, `By: ${name}`);
     let emailElement = createElement('h6', null,  `Email: ${email}`);
     let todayElement = createElement('h6', null, `Date: ${date}`);
+     // Skapa kommentarssektion
+    let commentSection = createCommentSection('p', 'comment');
     
     // Event funktion till delete-knapp för att ta bort skapande inlägg. 
     deleteBtn.addEventListener('click', () => {
@@ -88,7 +151,7 @@ function postBtn(event) {
     
     // Lägg till inlägg i DOM
     // append med fler element och appendChild med enkel element.
-    postItem.append(titleElement, opinionElement, buttonContainer, deleteBtn, nameElement, todayElement, emailElement);
+    postItem.append(titleElement, opinionElement, buttonContainer, deleteBtn, nameElement, todayElement, emailElement, commentSection);
     buttonContainer.append(likeContainer, dislikeContainer);
     likeContainer.append(likeButton, countLike);
     dislikeContainer.append(dislikeButton, countDislike);
