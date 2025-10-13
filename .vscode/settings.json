@@ -1,7 +1,8 @@
 {
-    "path-intellisense.autoTriggerNextSuggestion": true,
-    "emmet.includeLanguages": {
-        "\"emmet.triggerExpansionOnTab\"": "true"
-    },
-    "editor.tabCompletion": "on"
+  "path-intellisense.autoTriggerNextSuggestion": true,
+  "emmet.includeLanguages": {
+    "\"emmet.triggerExpansionOnTab\"": "true"
+  },
+  "editor.tabCompletion": "on",
+  "liveServer.settings.port": 5501
 }

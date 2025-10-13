@@ -50,7 +50,7 @@ function createCommentSection() {
     
     // Formulär för att lägga till kommentar
     const commentForm = createElement('div', 'comment-form');
-    const commentInput = createElement('input', 'comment-input');
+    const commentInput = createElement('textarea', 'comment-input');
     commentInput.type = 'text';
     commentInput.placeholder = 'Write a comment...';
     
@@ -58,8 +58,9 @@ function createCommentSection() {
     commentNameInput.type = 'text';
     commentNameInput.placeholder = 'Your name';
     
-    const addCommentBtn = createElement('button', 'add-comment-btn', 'Add Comment');
-
+    const addCommentBtn = createElement('button', 'add-comment-btn');
+    // Sätt innerHTML separat
+    addCommentBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i>';
 
 // Event för att lägga till kommentar
     addCommentBtn.addEventListener('click', () => {
@@ -74,7 +75,7 @@ function createCommentSection() {
         // Skapa kommentar-element
         const commentItem = createElement('div', 'comment-item');
         const commentAuthor = createElement('strong', 'comment-author', commentName + ': ');
-        const commentContent = createElement('span', 'comment-content', commentText);
+        const commentContent = createElement('p', 'comment-content', commentText);
         const commentDate = createElement('small', 'comment-date', ' (' + new Date().toLocaleDateString() + ')');
         
         commentItem.appendChild(commentAuthor);
