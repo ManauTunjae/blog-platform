@@ -42,13 +42,12 @@ function createLikeDislikeButtons() {
 
 // Funktion för att skapa kommentarssektion
 function createCommentSection() {
-    // Container för hela kommentarssektionen
+
+    // Comment sektionen.
     const commentSection = createElement('div', 'comment-section');
-    
-    // Container för att visa kommentarer
     const commentsDisplay = createElement('div', 'comments-display');
     
-    // Formulär för att lägga till kommentar
+    // Formulär för att lägga till kommentar.
     const commentForm = createElement('div', 'comment-form');
     const commentInput = createElement('textarea', 'comment-input');
     commentInput.type = 'text';
@@ -62,7 +61,7 @@ function createCommentSection() {
     // Sätt innerHTML separat
     addCommentBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i>';
 
-// Event för att lägga till kommentar
+    // Event för att lägga till kommentar.
     addCommentBtn.addEventListener('click', () => {
         const commentText = commentInput.value.trim();
         const commentName = commentNameInput.value.trim();
@@ -72,31 +71,25 @@ function createCommentSection() {
             return;
         }
         
-        // Skapa kommentar-element
+        // Skapa kommentar-element.
         const commentItem = createElement('div', 'comment-item');
         const commentAuthor = createElement('strong', 'comment-author', commentName + ': ');
         const commentContent = createElement('p', 'comment-content', commentText);
-        const commentDate = createElement('small', 'comment-date', ' (' + new Date().toLocaleDateString() + ')');
+        const commentDate = createElement('p', 'comment-date', ' (' + new Date().toLocaleDateString() + ')');
         
         commentItem.appendChild(commentAuthor);
         commentItem.appendChild(commentContent);
         commentItem.appendChild(commentDate);
         
-        // Lägg till kommentaren i displayen
         commentsDisplay.appendChild(commentItem);
         
-        // Rensa input-fälten
-        commentInput.value = '';
-        commentNameInput.value = '';
+        commentInput.value = commentNameInput.value = '';
     });
     
     // Bygg ihop kommentarsformulär
     commentForm.append(commentNameInput, commentInput, addCommentBtn);
-    
-    // Lägg till rubrik
+    // Lägg till rubrik och bygg ihop hela kommentarssektionen
     const commentTitle = createElement('h6', 'comment-title', 'Comments:');
-    
-    // Bygg ihop hela kommentarssektionen
     commentSection.append(commentTitle, commentsDisplay, commentForm);
     
     return commentSection;
@@ -135,10 +128,10 @@ function postBtn(event) {
     let dislikeContainer = createElement('div', 'dislikeContainer');
     // Hämta like, dislike-element från funktionen createLikeDislikeButtons. 
     let { likeButton, countLike, dislikeButton, countDislike } = createLikeDislikeButtons();
-    let deleteBtn = createElement('button', 'deleteBtn', 'Delete your post');
+    let deleteBtn = createElement('button', 'deleteBtn', 'Delete');
     let nameElement = createElement('h6', null, `By: ${name}`);
     let emailElement = createElement('h6', null,  `Email: ${email}`);
-    let todayElement = createElement('h6', null, `Date: ${date}`);
+    let dateElement = createElement('h6', null, `Date: ${date}`);
      // Skapa kommentarssektion
     let commentSection = createCommentSection('p', 'comment');
     
@@ -149,10 +142,10 @@ function postBtn(event) {
             saveBlogPost.removeChild(postItem);
         }
     });
-    
+
     // Lägg till inlägg i DOM
     // append med fler element och appendChild med enkel element.
-    postItem.append(titleElement, opinionElement, buttonContainer, deleteBtn, nameElement, todayElement, emailElement, commentSection);
+    postItem.append(titleElement, opinionElement, buttonContainer, deleteBtn, nameElement, dateElement, emailElement, commentSection);
     buttonContainer.append(likeContainer, dislikeContainer);
     likeContainer.append(likeButton, countLike);
     dislikeContainer.append(dislikeButton, countDislike);
