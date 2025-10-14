@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Barlow", sans-serif;;
 }
 
 html body {
@@ -9,17 +10,16 @@ html body {
     flex-direction: column;
     height: 100vh;
     background-color: rgba(235, 218, 204, 0.934);
-    font-family: "Barlow", sans-serif;
     color: rgba(0, 0, 0, 0.705);
 }
 
 /* Webb header */
 #header {
+    display: flex; /* Använder display-flex för att My blog ska centreras mitten */
+    justify-content: center;
     background-color: rgba(247, 175, 204, 0.477);
     max-height: 3.5rem;
     padding: 1rem;
-    display: flex; /* Använder display-flex för att My blog ska centreras mitten */
-    justify-content: center;
     align-items: center;
     border-radius: 0 0 20px 20px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.445);
@@ -27,13 +27,13 @@ html body {
 
 /* Footer */
 .footer {
-    margin-top: auto;
     background-color: rgba(247, 175, 204, 0.477);
-    color: grey;
+    margin-top: auto;
+    padding: 1rem; 
+    border-radius: 20px 20px 0 0;
     font-weight: bold;
     text-align: center;
-    border-radius: 20px 20px 0 0;
-    padding: 1rem; 
+    color: grey;
     box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -52,20 +52,21 @@ html body {
 
 /* Input-sektion */
 .new-blogg-post {
+    font-size: 2.5rem;
     color: rgb(255, 255, 255);
-    font-size: 1.8rem;
     text-align: center;
 }
 
 .input-form {
+    max-height: 45rem;
     background-color: rgba(236, 114, 114, 0.599);
     margin: 1rem;
     padding: 1rem;
     border-radius: 20px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.445);
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    max-height: 560px;
+    line-height: 1.5;
 }
 
 input, textarea {
@@ -74,30 +75,31 @@ input, textarea {
     margin-bottom: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 10px;
-    font-size: 0.8rem;
+    font-size: 1rem;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.445);
 }
 
 #your-opinion {
-    height: 15rem;
+    height: 16rem;
     resize: none;
     border-radius: 10px;
 }
 
 #submit-btn {
-    background-color: #d9468dd4;
-    width: 4rem;
-    height: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #d9468dd4;
     border: none;
     border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(255, 255, 255, 0.845);
+    width: 7rem;
+    height: 3rem;
+    font-size: 2rem;
     color: white;
     font-weight: bold;
     transition: all 0.3s ease;
     cursor: pointer;
-    box-shadow: 4px 4px 4px rgba(255, 255, 255, 0.845);
 }
 
 button:active {
@@ -106,15 +108,15 @@ button:active {
 
 /* Skapande inlägg sektion */
 .post-item {
+    display: flex;
+    flex-direction: column;
     background-color: rgba(255, 255, 255, 0.8);
     margin: 1rem;
     padding: 1rem;
     border-radius: 20px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.445);
-    color: rgba(0, 0, 0, 0.49);
     font-size: 1.8rem;
-    display: flex;
-    flex-direction: column;
+    color: rgba(0, 0, 0, 0.49);
 }
 
 .post-item .postTitle {
@@ -124,17 +126,18 @@ button:active {
 }
 
 .post-item>h6 {
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 .post-content {
+    background-color: pink;
     margin-top: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.445);
+    line-height: 1.5rem;
     font-size: 1rem;
     color: black;
-    background-color: pink;
-    border-radius: 10px;
-    padding: 0.5rem;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.445);
 }
 
 .buttonContainer {
@@ -144,107 +147,107 @@ button:active {
 
 .likeContainer, .dislikeContainer {
     display: flex;
-    width: 3rem; 
+    margin-bottom: 1rem;
     border-radius: 1rem;
-    margin-bottom: 1rem;;
+    width: 3rem; 
 }
 
 .likeButton, .countLike {
-    font-size: 1.2rem;
-    color: green;
+    margin: 0.5rem;
     border-radius: 0.5rem;
     border: none;
-    margin: 0.5rem;
+    font-size: 1.2rem;
+    color: green;
     cursor: pointer;
 }
 
 .dislikeButton, .countDislike {
-    font-size: 1.2rem;
-    color: red;
-    border-radius: 0.5rem;
     border: none;
     margin: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    color: red;
     cursor: pointer;
 }
 
 .deleteBtn {
+    margin-bottom: 0.5rem;    
     background-color: #ff4d4d;
-    width: 5.5rem;
-    height: 1.5rem;
+    width: 5rem;
+    height: 2rem;
     border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(255, 255, 255, 0.845);
+    font-size: 1rem;
     color: white;
     font-weight: bold;
-    font-size: 0.6rem;
     transition: all 0.3s ease;
     cursor: pointer;
-    box-shadow: 4px 4px 4px rgba(255, 255, 255, 0.845);
-    margin-bottom: 0.5rem;    
 } 
 
 /* Comment sektion */
 .comment-section {
+    background-color: #e796964f;
     margin-top: 20px;
     padding: 15px;
-    background-color: #e796964f;
     border-radius: 20px;
 }
 
 .comment-form {
-    display: column;
-    gap: 5px;
-    margin-top: 10px;
+    margin-top: 5px;
+    gap: 3px;
 }
 
 .comment-name-input {
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 1rem;
-    flex: 1;
 }
 
 .comment-input {
+    height: 7rem;
     border: 1px solid #ddd;
     border-radius: 1rem;
-    height: 7rem;
 }
 
 .add-comment-btn {
     background-color: #007bff;
-    font-size: 0.9rem;
     padding: 0.5rem;
-    color: white;
-    border: none;
     border-radius: 0.7rem;
+    border: none;
+    font-size: 0.9rem;
+    color: white;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .comment-item {
-    padding: 0.5rem;
-    margin: 0.5rem 0 0 0;
     background-color: white;
-    border-left: 3px solid #ff6a00c4;
+    margin: 0.5rem 0 0 0;
+    padding: 0 0.5rem 0.5rem 0.5rem;
     border-radius: 10px;
+    border: 2px solid #ff6a00c4;
 }
 
 .comment-author {
+    font-size: 1rem;
     color: #ff6a00c4;
-    font-size: 0.9rem;
-}
-
-.comment-date {
-    color: #160202;
-    font-style: italic;
 }
 
 .comment-content {
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: rgb(74, 71, 71);
 }
 
 .comment-date {
-    color: black;
+    margin-top: 0.5rem;
+    color: #160202;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.comment-date {
     font-size: 0.7rem;
+    color: black;
 }
 
 /* Anpassar andra storlek skärm iPad och mobil användare */
@@ -271,8 +274,8 @@ button:active {
     }
 
     .input-form {
-        font-size: 1rem;
         text-align: left;
+        font-size: 1rem;
     }
 
     input, textarea {
@@ -282,6 +285,12 @@ button:active {
     #your-opinion {
         height: 6rem;
         resize: none;
+    }
+
+    #submit-btn {
+        width: 4rem;
+        height: 2rem;
+        font-size: 1rem;
     }
 
     /* Skapande inlägg sektion */
@@ -296,8 +305,8 @@ button:active {
     }
 
     .countLike, .countDislike {
+        font-size: 1.2rem;
         font-weight: bold;
-        font-size: 0.8rem;
     }
 
     .post-item {
@@ -307,6 +316,10 @@ button:active {
 
     .post-content {
         font-size: 1rem;
+    }
+
+    .post-item>h6 {
+    font-size: 0.8rem;
     }
 
 }
