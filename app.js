@@ -50,7 +50,6 @@ function createCommentSection() {
     // Formulär för att lägga till kommentar.
     const commentForm = createElement('div', 'comment-form');
     const commentInput = createElement('textarea', 'comment-input');
-    commentInput.type = 'text';
     commentInput.placeholder = 'Write a comment...';
     
     const commentNameInput = createElement('input', 'comment-name-input');
@@ -63,6 +62,7 @@ function createCommentSection() {
 
     // Event för att lägga till kommentar.
     addCommentBtn.addEventListener('click', () => {
+        // Ta bort mellanslag och tomma kommentarer går inte att skicka.
         const commentText = commentInput.value.trim();
         const commentName = commentNameInput.value.trim();
         
@@ -80,7 +80,6 @@ function createCommentSection() {
         commentItem.appendChild(commentAuthor);
         commentItem.appendChild(commentContent);
         commentItem.appendChild(commentDate);
-        
         commentsDisplay.appendChild(commentItem);
         
         commentInput.value = commentNameInput.value = '';
@@ -133,7 +132,7 @@ function postBtn(event) {
     let emailElement = createElement('h6', null,  `Email: ${email}`);
     let dateElement = createElement('h6', null, `Date: ${date}`);
      // Skapa kommentarssektion
-    let commentSection = createCommentSection('p', 'comment');
+    let commentSection = createCommentSection();
     
     // Event funktion till delete-knapp för att ta bort skapande inlägg. 
     deleteBtn.addEventListener('click', () => {
